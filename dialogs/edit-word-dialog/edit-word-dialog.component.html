@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>Edit element</h2>
+<mat-dialog-content>
+  <form [formGroup]="editForm">
+    <div class="row">
+      <mat-form-field class="col col-12" appearance="fill">
+        <mat-label>Foreign word</mat-label>
+        <input matInput placeholder="Ex. mother" value="Mother" formControlName="foreignWord">
+      </mat-form-field>
+    </div>
+
+    <div formArrayName="translations">
+      <div class="row" *ngFor="let translation_ctr of translations().controls; let i=index" [formGroupName]="i">
+        <mat-form-field class="col col-8" appearance="fill">
+          <mat-label>Word's translation</mat-label>
+          <input matInput placeholder="Ex. anya" value="anya" formControlName="translation">
+        </mat-form-field>
+
+        <button mat-button class="col col-2" style="margin: auto;" [disabled]="translations().controls.length==1" (click)="removeTranslation(i)">Remove</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <button mat-button class="col col-4 offset-8" style="margin: auto;" (click)="addNewTranslation()">Add translation
+      </button>
+    </div>
+
+    <div style="height: 2rem;"></div>
+
+
+    <div class="row">
+      <mat-form-field class="col col-12" appearance="fill">
+        <mat-label>Test string</mat-label>
+        <input matInput placeholder="Ex. anya" formControlName="test">
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="col col-12" appearance="fill">
+        <mat-label>Usage</mat-label>
+        <textarea matInput placeholder="Ex. It makes me feel..." formControlName="usage"></textarea>
+      </mat-form-field>
+    </div>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [disabled]="!isFormValid()" (click)="closeDialog()">Submit</button>
+</mat-dialog-actions>
