@@ -12,3 +12,8 @@
   justify-content: flex-end;
   width: 100%;
 }
+
+.lang-selection {
+  display: block;
+  margin: 3rem;
+}

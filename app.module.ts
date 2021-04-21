@@ -20,6 +20,14 @@ import { NewDictionaryFromFileComponent } from './new-dictionary-from-file/new-d
 import { DictionaryListComponent } from './dictionary-list/dictionary-list.component';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import {RouterModule, Routes} from '@angular/router';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+
+const routes: Routes = [
+  { path: '', component: DictionaryListComponent },
+  { path: 'add-new-dict-from-file', component: NewDictionaryFromFileComponent },
+];
 
 @NgModule({
   declarations: [
@@ -27,7 +35,8 @@ import {MatSelectModule} from '@angular/material/select';
     EditWordDialogComponent,
     DeleteWordDialogComponent,
     NewDictionaryFromFileComponent,
-    DictionaryListComponent
+    DictionaryListComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +54,8 @@ import {MatSelectModule} from '@angular/material/select';
     AngularFireDatabaseModule,
     MatOptionModule,
     MatSelectModule,
+    RouterModule.forRoot(routes),
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

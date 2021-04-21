@@ -17,6 +17,7 @@ export class DictionaryListComponent implements OnInit {
   constructor(private dictionaryService: DictionaryService) { }
 
   getLanguageDictionaries(selectedLanguage: string) {
+    // https://stackoverflow.com/questions/48705555/how-to-get-id-of-selected-value-in-mat-select-option-in-angular-5
     this.selectedLanguage = selectedLanguage;
     // https://stackoverflow.com/questions/17380845/how-do-i-convert-a-string-to-enum-in-typescript
     this.dictionaryService.getDictionariesByLanguage(Language[this.selectedLanguage])
