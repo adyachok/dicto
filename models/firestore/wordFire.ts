@@ -12,7 +12,7 @@ export class WordFire {
     this.foreignWord = foreignWord;
     this.translations = translations;
     this.test = test ? test : '';
-    this.usage = usage? usage : '';
+    this.usage = usage ? usage : '';
     this.documentSource = documentSource;
     if (dictionaryId !== undefined) {
       this.dictionaryId = dictionaryId;

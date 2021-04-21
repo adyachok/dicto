@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DictionaryService} from '../services/dictionary.service';
 import {DictionaryFire, Language} from '../models/firestore/dictionaryFire';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dictionary-list',
@@ -14,7 +15,7 @@ export class DictionaryListComponent implements OnInit {
   languages: string[];
   selectedLanguage: string;
 
-  constructor(private dictionaryService: DictionaryService) { }
+  constructor(private dictionaryService: DictionaryService, private router: Router) { }
 
   getLanguageDictionaries(selectedLanguage: string) {
     // https://stackoverflow.com/questions/48705555/how-to-get-id-of-selected-value-in-mat-select-option-in-angular-5
@@ -34,7 +35,9 @@ export class DictionaryListComponent implements OnInit {
 
   edit(dictionaryIndex: number) {}
 
-  view(dictionaryIndex: number) {}
+  view(dictionaryIndex: number) {
+    this.router.navigate(['/words', this.dictionaries[dictionaryIndex].id]);
+  }
 
   ngOnInit(): void {
     this.languages = Object.values(Language);
