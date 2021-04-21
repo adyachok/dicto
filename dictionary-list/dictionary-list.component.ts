@@ -31,6 +31,8 @@ export class DictionaryListComponent implements OnInit {
     });
   }
 
+  learn(dictionaryIndex: number) {}
+
   delete(dictionaryIndex: number) {}
 
   edit(dictionaryIndex: number) {}
