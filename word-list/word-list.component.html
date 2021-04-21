@@ -1,0 +1,16 @@
+<mat-card *ngFor="let word of words; let j=index">
+  <div class="flex-container">
+    <div class="flex-item-long">{{word.foreignWord}} - {{word.translations}}</div>
+    <div class="flex-item">
+      <div class="flex-container">
+        <mat-action-list class="flex-item flex-container-end">
+          <div class="flex-container-end">
+            <button mat-list-item class="flex-item" (click)="edit(j)"> Edit</button>
+            <button mat-list-item class="flex-item" (click)="delete(j)"> Delete</button>
+          </div>
+        </mat-action-list>
+      </div>
+    </div>
+  </div>
+</mat-card>
+
