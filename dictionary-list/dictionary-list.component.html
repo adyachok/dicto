@@ -1,0 +1,33 @@
+<h2>Dictionary list</h2>
+
+<mat-form-field appearance="fill">
+  <mat-label>Dictionaries language</mat-label>
+  <mat-select matNativeControl required (selectionChange)="getLanguageDictionaries($event.value)">
+    <mat-option *ngFor="let lang of languages" value="{{lang}}">{{lang}}</mat-option>
+  </mat-select>
+  <mat-hint>Please, select dictionaries language</mat-hint>
+</mat-form-field>
+
+<!--<mat-selection-list #dict [multiple]="false">-->
+<!--  <mat-list-option *ngFor="let dict of dictionaries" [value]="dict.name">-->
+<!--    {{dict.name}}-->
+<!--  </mat-list-option>-->
+<!--</mat-selection-list>-->
+
+
+<mat-card *ngFor="let dict of dictionaries; let j=index">
+    <div class="flex-container">
+      <div class="flex-item-long">{{dict.name}}</div>
+      <div class="flex-item">
+        <div class="flex-container">
+          <mat-action-list class="flex-item flex-container-end">
+            <div class="flex-container-end">
+              <button mat-list-item class="flex-item" (click)="view(j)">View</button>
+              <button mat-list-item class="flex-item" (click)="edit(j)">Edit</button>
+              <button mat-list-item class="flex-item" (click)="delete(j)">Delete</button>
+            </div>
+          </mat-action-list>
+        </div>
+      </div>
+    </div>
+</mat-card>
