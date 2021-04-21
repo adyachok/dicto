@@ -12,12 +12,22 @@ import { DeleteWordDialogComponent } from './dialogs/delete-word-dialog/delete-w
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {environment} from '../environments/environment';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { NewDictionaryFromFileComponent } from './new-dictionary-from-file/new-dictionary-from-file.component';
+import { DictionaryListComponent } from './dictionary-list/dictionary-list.component';
+import {MatOptionModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
     AppComponent,
     EditWordDialogComponent,
-    DeleteWordDialogComponent
+    DeleteWordDialogComponent,
+    NewDictionaryFromFileComponent,
+    DictionaryListComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +40,11 @@ import {MatInputModule} from '@angular/material/input';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    MatOptionModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

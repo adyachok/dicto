@@ -1,4 +1,4 @@
-export class Word {
+export class WordYML {
   foreignWord: string;
   translations: string[];
   test: string;
@@ -13,11 +13,11 @@ export class Word {
 }
 
 export class EditableWord {
-  word: Word;
+  word: WordYML;
   documentInDictionaryNum: number;
   wordInDocumentNum: number;
 
-  constructor(word: Word, documentInDictionaryNum: number, wordInDocumentNum: number) {
+  constructor(word: WordYML, documentInDictionaryNum: number, wordInDocumentNum: number) {
     this.documentInDictionaryNum = documentInDictionaryNum;
     this.word = word;
     this.wordInDocumentNum = wordInDocumentNum;

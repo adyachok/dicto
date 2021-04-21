@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {EditableWord, Word} from '../../models/dict-word';
+import {EditableWord, WordYML} from '../../models/yaml/wordYML';
 
 
 @Component({
@@ -51,7 +51,7 @@ export class EditWordDialogComponent implements OnInit {
 
   addNewTranslation() {
     this.translations().push(this.newTranslation());
-    console.log(this.editForm.controls);
+    // console.log(this.editForm.controls);
   }
 
   addExistingTranslation(translation: string) {
@@ -61,14 +61,14 @@ export class EditWordDialogComponent implements OnInit {
   closeDialog() {
     // https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/
     const submittedData = this.editForm.value;
-    console.log(submittedData);
+    // console.log(submittedData);
     const translations: string[] = [];
     for (const translationObj of submittedData.translations) {
       const translation = translationObj.translation;
       translations.push(translation);
     }
     submittedData.translations = translations;
-    console.log(submittedData);
+    // console.log(submittedData);
     const result = {
       documentInDictionaryNum: this.eword.documentInDictionaryNum,
       wordInDocumentNum: this.eword.wordInDocumentNum,
