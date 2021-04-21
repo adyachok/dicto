@@ -1,6 +1,7 @@
-import {WordYML} from '../yaml/wordYML';
+import {EditableWord, WordYML} from '../yaml/wordYML';
 
 export class WordFire {
+  id?: string;
   foreignWord: string;
   translations: string[];
   test: string;
@@ -8,7 +9,8 @@ export class WordFire {
   dictionaryId?: string;
   documentSource: string;
 
-  constructor(foreignWord: string, translations: string[], test: string, usage: string, documentSource: string, dictionaryId?: string) {
+  constructor(foreignWord: string, translations: string[], test: string,
+              usage: string, documentSource: string, dictionaryId?: string, id?: string) {
     this.foreignWord = foreignWord;
     this.translations = translations;
     this.test = test ? test : '';
@@ -16,6 +18,9 @@ export class WordFire {
     this.documentSource = documentSource;
     if (dictionaryId !== undefined) {
       this.dictionaryId = dictionaryId;
+    }
+    if (id !== undefined) {
+      this.id = id;
     }
   }
 
@@ -27,5 +32,16 @@ export class WordFire {
       wordYml.usage,
       documentSource,
       dictionaryId);
+  }
+}
+
+export class EditableFireWord extends EditableWord {
+  word: WordFire;
+
+  constructor(word: WordFire, documentInDictionaryNum: number, wordInDocumentNum: number) {
+    super(word, documentInDictionaryNum, wordInDocumentNum);
+    this.documentInDictionaryNum = documentInDictionaryNum;
+    this.word = word;
+    this.wordInDocumentNum = wordInDocumentNum;
   }
 }

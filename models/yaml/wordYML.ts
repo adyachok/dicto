@@ -23,3 +23,4 @@ export class EditableWord {
     this.wordInDocumentNum = wordInDocumentNum;
   }
 }
+

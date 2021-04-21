@@ -1,9 +1,8 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {WordsService} from '../services/words.service';
-import {WordFire} from '../models/firestore/wordFire';
+import {EditableFireWord, WordFire} from '../models/firestore/wordFire';
 import {ActivatedRoute} from '@angular/router';
 import {EditWordDialogComponent} from '../dialogs/edit-word-dialog/edit-word-dialog.component';
-import {EditableWord} from '../models/yaml/wordYML';
 import {MatDialog} from '@angular/material/dialog';
 
 @Component({
@@ -37,8 +36,9 @@ export class WordListComponent implements OnInit, OnDestroy{
       // console.log('RESULT: ' + typeof(result));
       if (result !== undefined && result) {
         // console.log(result);
-        const eword = result as EditableWord;
-        // this.words[wordIndex] = eword.word;
+        const eword = result as EditableFireWord;
+        this.words[wordIndex] = eword.word;
+        this.wordsService.updateWord(word);
       }
     });
   }
@@ -53,8 +53,8 @@ export class WordListComponent implements OnInit, OnDestroy{
        this.wordsService.getWords(this.dictionaryId).subscribe((data) => {
         for (const doc of data) {
           const word = doc.payload.doc.data() as WordFire;
+          word.id = doc.payload.doc.id;
           this.words.push(word);
-          // console.log(word);
         }
       });
     });
