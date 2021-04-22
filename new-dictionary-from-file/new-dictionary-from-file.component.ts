@@ -10,6 +10,7 @@ import {parse} from 'yaml';
 import {DictionaryFire} from '../models/firestore/dictionaryFire';
 import {WordsService} from '../services/words.service';
 import {WordFire} from '../models/firestore/wordFire';
+import {StateService} from '../services/state.service';
 
 @Component({
   selector: 'app-new-dictionary-from-file',
@@ -127,5 +128,4 @@ export class NewDictionaryFromFileComponent {
       }
     }
   }
-
 }

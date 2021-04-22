@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {WordFire} from '../models/firestore/wordFire';
+import {StateService} from './state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class WordsService {
   private wordsDbPath = 'words';
 
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(private firestore: AngularFirestore, private stateService: StateService) {
   }
 
   getWords(dictionaryId: string) {
@@ -21,12 +22,12 @@ export class WordsService {
       .snapshotChanges();
   }
 
-  createWord(data: WordFire, callback?: (result) => void) {
+  createWord(data: WordFire) {
     return new Promise<any>((resolve, reject) => {
       this.firestore
         .collection(this.wordsDbPath)
         .add(data)
-        .then(res => callback ? callback(res) : console.log(res.id), err => reject(err));
+        .then(res => {this.stateService.setAddedState(res.id); }, err => reject(err));
     });
   }
 
