@@ -103,7 +103,7 @@ export class NewDictionaryFromFileComponent {
     this.dictionaryService.getDictionaries().subscribe((data) => {
       for (const doc of data) {
         console.log(doc.payload.doc.id);
-        console.log(doc.payload.doc.data() as WordFire);
+        // console.log(doc.payload.doc.data() as WordFire);
       }
     });
   }
@@ -119,7 +119,7 @@ export class NewDictionaryFromFileComponent {
   }
 
   createWords(dictionaryId: string) {
-    console.log(this);
+    // console.log(this);
     for (const doc of this.dictionary.documents) {
       for (const word of doc.words) {
         const fireWord = WordFire.buildFromWordYmlObject(word, dictionaryId, doc.source);

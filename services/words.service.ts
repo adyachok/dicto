@@ -31,7 +31,7 @@ export class WordsService {
   }
 
   updateWord(word: WordFire, callback?: (res) => void) {
-    console.log(word);
+    // console.log(word);
     return new Promise<any>((resolve, reject) => {
       this.firestore
         .collection(this.wordsDbPath)

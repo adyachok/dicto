@@ -35,10 +35,13 @@ export class WordListComponent implements OnInit, OnDestroy{
     dialogRef.afterClosed().subscribe(result => {
       // console.log('RESULT: ' + typeof(result));
       if (result !== undefined && result) {
-        // console.log(result);
         const eword = result as EditableFireWord;
-        this.words[wordIndex] = eword.word;
-        this.wordsService.updateWord(word);
+        const editedWord = this.words[wordIndex];
+        editedWord.foreignWord = eword.word.foreignWord;
+        editedWord.usage = eword.word.usage;
+        editedWord.translations = eword.word.translations;
+        editedWord.test = eword.word.test;
+        this.wordsService.updateWord(editedWord);
       }
     });
   }
