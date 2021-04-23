@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LearnService} from '../services/learn.service';
 import {ActivatedRoute} from '@angular/router';
 import {LearnWordFire} from '../models/firestore/learnWordFire';
@@ -8,7 +8,7 @@ import {LearnWordFire} from '../models/firestore/learnWordFire';
   templateUrl: './learn-words.component.html',
   styleUrls: ['./learn-words.component.css']
 })
-export class LearnWordsComponent implements OnInit {
+export class LearnWordsComponent implements OnInit, OnDestroy {
 
   dictionaryId: string;
   private sub: any;
@@ -26,7 +26,10 @@ export class LearnWordsComponent implements OnInit {
         this.learnWords = res;
       });
     });
+  }
 
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }
