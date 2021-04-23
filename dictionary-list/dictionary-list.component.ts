@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {DictionaryService} from '../services/dictionary.service';
 import {DictionaryFire, Language} from '../models/firestore/dictionaryFire';
 import {Router} from '@angular/router';
+import {LearnService} from '../services/learn.service';
+import {WordFire} from '../models/firestore/wordFire';
 
 @Component({
   selector: 'app-dictionary-list',
@@ -15,7 +17,9 @@ export class DictionaryListComponent implements OnInit {
   languages: string[];
   selectedLanguage: string;
 
-  constructor(private dictionaryService: DictionaryService, private router: Router) { }
+  constructor(private dictionaryService: DictionaryService,
+              private router: Router,
+              private learnService: LearnService) { }
 
   getLanguageDictionaries(selectedLanguage: string) {
     // https://stackoverflow.com/questions/48705555/how-to-get-id-of-selected-value-in-mat-select-option-in-angular-5
@@ -31,7 +35,9 @@ export class DictionaryListComponent implements OnInit {
     });
   }
 
-  learn(dictionaryIndex: number) {}
+  learn(dictionaryIndex: number) {
+    this.router.navigate(['/learn-words', this.dictionaries[dictionaryIndex].id]);
+  }
 
   delete(dictionaryIndex: number) {}
 

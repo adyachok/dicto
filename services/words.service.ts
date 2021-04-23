@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {WordFire} from '../models/firestore/wordFire';
 import {StateService} from './state.service';
+import firebase from 'firebase/app';
+import firestore = firebase.firestore;
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,16 @@ export class WordsService {
       this.wordsDbPath,
       ref => ref.where('dictionaryId', '==', dictionaryId))
       .snapshotChanges();
+  }
+
+  getWordsByIds(wordsIds: string[]) {
+    // https://cloud.google.com/firestore/docs/query-data/queries#web-v8_1
+    // https://github.com/angular/angularfire/blob/master/docs/firestore/querying-collections.md
+    return this.firestore.collection(
+      this.wordsDbPath,
+      // https://stackoverflow.com/questions/59920209/how-to-query-documents-using-document-ids-in-angularfire
+      ref => ref.where( firestore.FieldPath.documentId() , 'in', wordsIds))
+      .get();
   }
 
   createWord(data: WordFire) {

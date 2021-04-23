@@ -24,11 +24,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { WordListComponent } from './word-list/word-list.component';
+import { LearnWordsComponent } from './learn-words/learn-words.component';
 
 const routes: Routes = [
   { path: '', component: DictionaryListComponent },
   { path: 'add-new-dict-from-file', component: NewDictionaryFromFileComponent },
-  { path: 'words/:id', component: WordListComponent }
+  { path: 'words/:id', component: WordListComponent },
+  { path: 'learn-words/:dictionaryId', component: LearnWordsComponent },
 ];
 
 @NgModule({
@@ -39,7 +41,8 @@ const routes: Routes = [
     NewDictionaryFromFileComponent,
     DictionaryListComponent,
     ToolbarComponent,
-    WordListComponent
+    WordListComponent,
+    LearnWordsComponent
   ],
   imports: [
     BrowserModule,
