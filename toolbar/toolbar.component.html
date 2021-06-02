@@ -1,5 +1,6 @@
 <mat-toolbar>
   <span><a href="/">Skvrd</a></span>
-  <div style="width: 30%;"></div>
+  <div style="width: 80%;"></div>
   <button mat-button><a href="add-new-dict-from-file">Upload new dict</a></button>
+  <button mat-icon-button *ngIf="isLogged()" (click)="logout()"><mat-icon>logout</mat-icon></button>
 </mat-toolbar>

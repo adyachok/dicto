@@ -1,0 +1,31 @@
+<div *ngIf="authService.auth.user | async as user; else showLogin">
+  <h1>Hello {{ user.displayName }}!</h1>
+  <button mat-button (click)="authService.logout()">Logout</button>
+</div>
+<ng-template #showLogin>
+  <div style="display: flex; justify-content: center; align-items: center; min-height: 30rem;">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Please login</mat-card-title>
+        <mat-card-subtitle>To access resources you have to sign in.</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image
+           src="https://upload.wikimedia.org/wikipedia/commons/5/50/%D0%93%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%B8%D0%B9_%D0%A1%D0%BA%D0%BE%D0%B2%D0%BE%D1%80%D0%BE%D0%B4%D0%B0.jpg"
+           alt="Photo of a Hryhori Skovoroda">
+      <mat-card-content>
+        <p>
+          If you are not registered please contact the admin.
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button (click)="authService.login()">
+          <mat-icon>login</mat-icon>&nbsp;&nbsp;Login with Google
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</ng-template>
+
+
+

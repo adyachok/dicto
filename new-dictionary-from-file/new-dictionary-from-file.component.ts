@@ -11,6 +11,7 @@ import {DictionaryFire} from '../models/firestore/dictionaryFire';
 import {WordsService} from '../services/words.service';
 import {WordFire} from '../models/firestore/wordFire';
 import {StateService} from '../services/state.service';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-new-dictionary-from-file',
@@ -30,7 +31,8 @@ export class NewDictionaryFromFileComponent {
     private cd: ChangeDetectorRef,
     public dialog: MatDialog,
     private dictionaryService: DictionaryService,
-    private  wordsService: WordsService) {}
+    private  wordsService: WordsService,
+    private authService: AuthService) {}
 
   submit() {
     // Saves new dictionary and words in DB
@@ -94,7 +96,9 @@ export class NewDictionaryFromFileComponent {
         this.cd.markForCheck();
         if (typeof reader.result === 'string') {
           const data = parse(reader.result);
-          this.dictionary = DictionaryYML.fromData(data);
+          const uid = this.authService.getCurrentUserUID();
+          if (uid === null) {throw Error('User UID is not defined!'); }
+          this.dictionary = DictionaryYML.fromData(data, uid);
         }
       };
     }
@@ -121,9 +125,11 @@ export class NewDictionaryFromFileComponent {
 
   createWords(dictionaryId: string) {
     // console.log(this);
+    const uid = this.authService.getCurrentUserUID();
+    if (uid === null) {throw Error('User UID is not defined!'); }
     for (const doc of this.dictionary.documents) {
       for (const word of doc.words) {
-        const fireWord = WordFire.buildFromWordYmlObject(word, dictionaryId, doc.source);
+        const fireWord = WordFire.buildFromWordYmlObject(word, dictionaryId, doc.source, uid);
         this.wordsService.createWord(Object.assign({}, fireWord));
       }
     }

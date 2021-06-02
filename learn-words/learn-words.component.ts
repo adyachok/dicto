@@ -22,7 +22,7 @@ export class LearnWordsComponent implements OnInit, OnDestroy {
       this.dictionaryId = params.id;
 
       this.learnService.getWordsToLearn(this.dictionaryId).then((res) => {
-        console.log(res);
+        // console.log(res);
         this.learnWords = res;
       });
     });
