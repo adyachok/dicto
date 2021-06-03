@@ -52,7 +52,8 @@ export class WordsService {
         .set({
           translations: word.translations, usage: word.usage, test: word.test,
           foreignWord: word.foreignWord, dictionaryId: word.dictionaryId,
-          updatedAt: new Date()
+          updatedAt: new Date(), createdAt: word.createdAt, googleUID: word.googleUID,
+          documentSource: word.documentSource
         })
         .then(res => callback ? callback(res) : console.log(res), err => reject(err));
     });
